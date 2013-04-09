@@ -1,14 +1,16 @@
 <?php
 require_once 'phpmorphy/src/common.php';
 require_once 'funcs.php';
-require_once 'UTF8.php';
+//require_once 'UTF8.php';
 require_once 'Benchmark.php';
 
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 define('DICROOT', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+setlocale(LC_ALL, 'ru_RU.CP1251');
+$fmsize = ini_get('post_max_size');
 
-$app = Benchmark::start('ÐŸÑ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ');
+$app = Benchmark::start('Ïðèëîæåíèå');
 
 $stats = array();
 $text = '';
@@ -18,82 +20,78 @@ $unique = array();
 $files = array();
 $stop_words = explode(',', @file_get_contents(DICROOT . 'stop_words_ru.txt'));
 
-// Ð®Ð·ÐµÑ€ Ð·Ð°Ð³Ñ€ÑƒÐ·Ð¸Ð» Ñ„Ð°Ð¹Ð»
+// Þçåð çàãðóçèë ôàéë
 if (isset($_FILES['file']) AND strlen($_FILES['file']['tmp_name']))
 {
     $text = file_get_contents($_FILES['file']['tmp_name']);
 
-    $st = Benchmark::start('ÐÐ¾Ñ€Ð¼Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¸ Ñ€Ð°Ð·Ð±Ð¸ÐµÐ½Ð¸Ðµ Ñ‚ÐµÐºÑÑ‚Ð°');
+    $st = Benchmark::start('Íîðìàëèçàöèÿ è ðàçáèåíèå òåêñòà');
 
-    $norm_text = normalize($text, array('Cyrillic'));
+    $norm_text = normalize($text);
 
-    //$split_pattern = '/\b[\(\)\.\-\',:!\?;"\{\}\[\]â€žâ€œÂ»Â«â€˜`\t\r\n\d\s]*/u';
-    $split_pattern = '/(?<!-)\b[\s]*(?!-)/u';
+    //$split_pattern = '/\b[\(\)\.\-\',:!\?;"\{\}\[\]„“»«‘`\t\r\n\d\s]*/u';
+    $split_pattern = '/(?<!-)\b[\s]*(?!-)/';
     $words = preg_split($split_pattern, $norm_text, NULL, PREG_SPLIT_NO_EMPTY);
-
-
-    //$dict = unique($words);
+    die(print_r($words));
 
     Benchmark::stop($st);
 }
- else if (isset($_POST) AND !empty($_POST['text'])) // Ð¢ÐµÐºÑÑ‚ Ñ‡ÐµÑ€ÐµÐ· Ð¸Ð½Ð¿ÑƒÑ‚
+ else if (isset($_POST) AND !empty($_POST['text'])) // Òåêñò ÷åðåç èíïóò
 {
-    // Ñ€Ð°Ð·Ð±Ð¸ÐµÐ½Ð¸Ðµ Ñ‚ÐµÐºÑÑ‚Ð° Ð½Ð° ÑÐ»Ð¾Ð²Ð°
-    $st = Benchmark::start('ÐÐ¾Ñ€Ð¼Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¸ Ñ€Ð°Ð·Ð±Ð¸ÐµÐ½Ð¸Ðµ Ñ‚ÐµÐºÑÑ‚Ð°');
+    // ðàçáèåíèå òåêñòà íà ñëîâà
+    $st = Benchmark::start('Íîðìàëèçàöèÿ è ðàçáèåíèå òåêñòà');
 
     $text = substr($_POST['text'], 0, 200000);
 
-    $norm_text = normalize($text, array('Cyrillic'));
+    $norm_text = normalize($text);
 
-    $split_pattern = '/(?<!-)\b[\s]*(?!-)/u';
+    $split_pattern = '/(?<!-)\b[\s]*(?!-)/';
     $words = preg_split($split_pattern, $norm_text, NULL, PREG_SPLIT_NO_EMPTY);
-
-    //$dict = unique($words);
 
     Benchmark::stop($st);
 
 }
 
 if (sizeof($words)) {
-    $freq = Benchmark::start('Ð¡Ð¾ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ»Ð¾Ð²Ð°Ñ€Ñ');
+    $freq = Benchmark::start('Ñîñòàâëåíèå ñëîâàðÿ');
     $dict = unique($words);
     Benchmark::stop($freq);
 
-    $stop = Benchmark::start('Ð’Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑÑ‚Ð¾Ð¿-ÑÐ»Ð¾Ð²');
+    $stop = Benchmark::start('Âûäåëåíèå ñòîï-ñëîâ');
     $sane_words = remove_stop($words, $stop_words);
     $dict_stop = unique($sane_words);
     Benchmark::stop($stop);
 }
 
-// Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð½ÑƒÐ¶Ð½Ñ‹Ñ… Ñ„Ð°Ð¹Ð»Ð¾Ð²
+// Ñîçäàíèå íóæíûõ ôàéëîâ
 if (isset($_POST['freq']) AND !empty($dict)) {
-    // ÐžÐ±Ñ‹Ñ‡Ð½Ñ‹Ð¹ Ñ‡Ð°ÑÑ‚Ð¾Ñ‚Ð½Ñ‹Ð¹ ÑÐ»Ð¾Ð²Ð°Ñ€ÑŒ
-    $files['Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð½Ñ‹Ð¹ ÑÐ»Ð¾Ð²Ð°Ñ€ÑŒ'] = create_dic($dict, 'frequence');
+    // Îáû÷íûé ÷àñòîòíûé ñëîâàðü
+    $files['×àñòîòíûé ñëîâàðü'] = create_dic($dict, 'frequence');
 
 }
 if (isset($_POST['stop']) AND !empty($dict_stop))
 {
-    // ÑÐ»Ð¾Ð²Ð°Ñ€ÑŒ Ð¿Ð¾ÑÐ»Ðµ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ ÑÑ‚Ð¾Ð¿ ÑÐ»Ð¾Ð²
+    // ñëîâàðü ïîñëå óäàëåíèÿ ñòîï ñëîâ
     //die(print_r(array_flip($stop_words)));
-    $files['Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð½Ñ‹Ð¹ ÑÐ»Ð¾Ð²Ð°Ñ€ÑŒ (Ð±ÐµÐ· ÑÑ‚Ð¾Ð¿-ÑÐ»Ð¾Ð²)'] = create_dic($dict_stop, 'stop');
+    $files['×àñòîòíûé ñëîâàðü (áåç ñòîï-ñëîâ)'] = create_dic($dict_stop, 'stop');
 
 }
 if (isset($_POST['morph']) AND !empty($sane_words))
 {
-    $morph = Benchmark::start('ÐœÐ¾Ñ€Ñ„Ð¾Ð»Ð³Ð¸Ñ');
+    $morph = Benchmark::start('Ìîðôîëãèÿ');
 
     //$sane_words = remove_stop($words, $stop_words);
     $dict_morph = unique($sane_words, TRUE);
 
-    $files['Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð½Ñ‹Ð¹ ÑÐ»Ð¾Ð²Ð°Ñ€ÑŒ (Ð±ÐµÐ· ÑÑ‚Ð¾Ð¿-ÑÐ»Ð¾Ð², c Ð¼Ð¾Ñ€Ñ„Ð¾Ð»Ð¾Ð³Ð¸ÐµÐ¹)'] = create_dic($dict_morph, 'morph');
+    $files['×àñòîòíûé ñëîâàðü (áåç ñòîï-ñëîâ, c ìîðôîëîãèåé)'] = create_dic($dict_morph, 'morph');
     Benchmark::stop($morph);
 
 }
 
 // stats
 if ($text) {
-    $number_of_symbols = UTF8::strlen($text);
-    $spaces = mb_substr_count($text, ' ', 'utf-8');
+    $number_of_symbols = strlen($text);
+    $spaces = substr_count($text, ' ');
 
     $stop_words_actual = array_intersect($words, $stop_words);
     $stop_words_array = unique($stop_words_actual);

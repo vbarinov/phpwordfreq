@@ -1,21 +1,12 @@
 <?php
-function normalize($val, $langs = FALSE)
+function normalize($val)
 {
     if (!$val) return false;
-    if ($langs) {
-        foreach ($langs as $lang)
-        {
-            $l[] = '\p{'.$lang.'}++';
-        }
-        $match_symbols = implode(' | ', $l);
-    } else {
-        $match_symbols = '\p{L}++';
-    }
 
-    $val = preg_replace('~(\s)+(\-)+(\s)+~u', "$1$3", $val); // ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ Ð¾Ð´Ð¸Ð½Ð¾ÐºÐ¸Ðµ Ð´ÐµÑ„Ð¸ÑÑ‹
-    // Ð¾ÑÑ‚Ð°Ð²Ð»ÑÐµÐ¼ Ð±ÑƒÐºÐ²Ñ‹ Ð½ÑƒÐ¶Ð½Ð¾Ð³Ð¾ ÑÐ·Ñ‹ÐºÐ°, Ñ†Ð¸Ñ„Ñ€Ñ‹, Ð¿Ñ€Ð¾Ð±ÐµÐ»Ñ‹ Ð¸ Ð´ÐµÑ„Ð¸ÑÑ‹
-    // Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´Ð¸Ð¼ Ð² Ð²ÐµÑ€Ñ…Ð½Ð¸Ð¹ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€
-    $val = preg_replace('~[^'.$match_symbols.'\s\d\-]~u', '', UTF8::strtoupper($val));
+    $val = preg_replace('~(\s)+(\-)+(\s)+~', "$1$3", $val); // óáèðàåì îäèíîêèå äåôèñû
+    // îñòàâëÿåì áóêâû, öèôðû, ïðîáåëû è äåôèñû
+    // ïåðåâîäèì â âåðõíèé ðåãèñòð
+    $val = preg_replace('~[^\w\s\d\-]~', '', strtoupper($val));
 
     return $val;
 }
@@ -27,6 +18,7 @@ function unique($words, $morph = FALSE)
     $result = $marr = array();
 
     $unique = array_count_values($words);
+    foreach ($words as $w)
     arsort($unique, SORT_NUMERIC);
 
     if ($morph)
@@ -35,8 +27,8 @@ function unique($words, $morph = FALSE)
         //$morphy->getShmCache()->free();
         $unique_values = array_keys($unique);
 
-        /*
-        // Ð¿Ð¾ÑÐ»Ð¾Ð²Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°
+
+        // ïîñëîâíàÿ îáðàáîòêà
         foreach ($unique_values as $u)
         {
 
@@ -61,9 +53,9 @@ function unique($words, $morph = FALSE)
 
             unset($paradigms);
         }
-        */
 
-        // bulk-Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ°
+        /*
+        // bulk-îáðàáîòêà
         $morph_words = $morphy->findWord($unique_values);
 
         foreach ($morph_words as $key => $word) {
@@ -77,11 +69,13 @@ function unique($words, $morph = FALSE)
             }
             $marr[] = $word ? '{' . implode('|', $m) . '}' : '';
         }
+        */
 
     }
 
 
-    foreach ($unique as $word => $count) {
+    foreach ($unique as $word => $count)
+    {
         $result[$word] = array(
             $count,
             round($count / $total * 100, 4) . '%',
@@ -105,7 +99,7 @@ function create_dic($data, $filename, $dir = 'tmp')
     $path = DICROOT . $dir;
     if (is_dir($path) AND is_writable($path)) {
         $path .= DIRECTORY_SEPARATOR . $filename;
-        if (!$handle = fopen($path, 'c+b')) die('ÐÐµÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» '.$filename);
+        if (!$handle = fopen($path, 'c+b')) die('Íåâîçìîæíî ñîçäàòü ôàéë '.$filename);
         foreach ($data as $k => $v)
         {
             $line = $k . ':' . (is_array($v) ? implode(':', $v) : $v) . PHP_EOL;
@@ -119,101 +113,22 @@ function create_dic($data, $filename, $dir = 'tmp')
             'size' => round(filesize($path) / 1024, 2)
         );
     }
-    else die('ÐÐµ ÑƒÐ´Ð°Ñ‘Ñ‚ÑÑ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸ÑŽ tmp Ð½Ð° Ð·Ð°Ð¿Ð¸ÑÑŒ');
+    else die('Íå óäà¸òñÿ îòêðûòü äèðåêòîðèþ tmp íà çàïèñü');
 }
 
 function morphy_instance()
 {
-    // Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ ÑÐºÐ·ÐµÐ¼Ð¿Ð»ÑÑ€Ð° Ð¼Ð¾Ñ€Ñ„Ð¸
+    // Ñîçäàíèå ýêçåìïëÿðà ìîðôè
     $dic_path = DICROOT . 'phpmorphy/dicts';
     $lang = 'ru_RU';
     define('PHPMORPHY_SHM_SEGMENT_SIZE', 256 * 1024 * 1024);
     $morphy_opts = array(
-        'storage' => PHPMORPHY_STORAGE_SHM,
+        'storage' => PHPMORPHY_STORAGE_MEM,
     );
 
     try {
         return new phpMorphy($dic_path, $lang, $morphy_opts);
     } catch (phpMorphy_Exception $e) {
-        die('ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ð¸ Ð¼Ð¾Ñ€Ñ„Ð¾Ð»Ð¾Ð³Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ð°Ð½Ð°Ð»Ð¸Ð·Ð°Ñ‚Ð¾Ñ€Ð° ' . $e->getMessage());
+        die('Ïðîèçîøëà îøèáêà ïðè ñîçäàíèè ìîðôîëîãè÷åñêîãî àíàëèçàòîðà ' . $e->getMessage());
     }
-}
-
-function parse_words($text)
-{
-    preg_match_all('~(?>#1 letters
-							(	#\p{L}++
-								(?>\p{Cyrillic}++)
-								#special
-								(?>		\#     (?!\p{L}|\d)		#programming languages: C#
-									|	\+\+?+ (?!\p{L}|\d)		#programming languages: C++, T++, B+ trees, Ð•Ð²Ñ€Ð¾Ð¿Ð°+; but not C+E, C+5
-								)?+
-							)
-
-							#2 numbers
-							|	(	\d++            #digits
-									(?> % (?!\p{L}|\d) )?+	#brand names: 120%
-								)
-							#|	\p{Nd}++  #decimal number
-							#|	\p{Nl}++  #letter number
-							#|	\p{No}++  #other number
-
-
-							#sentence end by dot
-							|	\. (?=[\x20'
-        . "\xc2\xa0"   #U+00A0 [ ] no-break space = non-breaking space
-        . '] (?!\p{Ll})  #following symbol not letter in lowercase
-									)
-
-							#sentence end by other
-							|	(?<!\()    #previous symbol not bracket
-								[!?;â€¦]++  #sentence end
-								#following symbol not
-								(?!["\)'
-        . "\xc2\xbb"       #U+00BB [Â»] right-pointing double angle quotation mark = right pointing guillemet
-        . "\xe2\x80\x9d"   #U+201D [â€] right double quotation mark
-        . "\xe2\x80\x99"   #U+2019 [â€™] right single quotation mark (and apostrophe!)
-        . "\xe2\x80\x9c"   #U+201C [â€œ] left double quotation mark
-        . ']
-								)
-						)
-						~sxuSX', $text, $m, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-
-
-    #cleanup
-    $words = array();
-    $sentences = array();
-    $uniques = array();
-    $offset_map = array();
-
-    #init
-    $abs_pos = 0;  #Ð½Ð¾Ð¼ÐµÑ€ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð¾Ð¹ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ ÑÐ»Ð¾Ð²Ð° Ð² Ñ‚ÐµÐºÑÑ‚Ðµ
-    $w_prev = false;  #Ð¿Ñ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰ÐµÐµ ÑÐ»Ð¾Ð²Ð¾
-
-    foreach ($m as $i => $a)
-    {
-        $is_alpha = $is_digit = false;
-        if ($is_digit = array_key_exists(2, $a)) list($w, $pos) = $a[2];
-        elseif ($is_alpha = array_key_exists(1, $a)) list($w, $pos) = $a[1];
-        else #delimiter found
-        {
-            list($w, $pos) = $a[0];
-            continue;
-        }
-        $w_prev = $w;
-        $words[$abs_pos] = $w;
-        $offset_map[$abs_pos] = $pos;
-        $abs_pos++;
-    }
-
-    try {
-        $uniques = array_count_values(explode(PHP_EOL, UTF8::uppercase(implode(PHP_EOL, $words))));
-        ksort($uniques, SORT_REGULAR);
-    } catch (Exception $e) {
-        die($e->getError());
-    }
-
-    //var_dump($words, $uniques);
-    //die;
-    return $m;
 }

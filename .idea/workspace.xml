@@ -20,26 +20,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="4" selection-start="2396" selection-end="2396" vertical-scroll-proportion="-54.964287">
-              <folding>
-                <marker date="1365524150314" expanded="true" signature="2391:2456" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/script.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="37" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -49,19 +29,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UTF8.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/UTF8.php">
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3374" column="64" selection-start="111263" selection-end="111263" vertical-scroll-proportion="-12.0">
+            <state line="34" column="25" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.36104512">
+              <folding>
+                <marker date="1365532261206" expanded="true" signature="2447:2452" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shm_utils.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phpmorphy/src/shm_utils.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="655" column="46" selection-start="18842" selection-end="18852" vertical-scroll-proportion="-32.32143">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="funcs.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="funcs.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/funcs.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="17" selection-start="2161" selection-end="2161" vertical-scroll-proportion="1.7189385">
+            <state line="20" column="25" selection-start="506" selection-end="506" vertical-scroll-proportion="-7.892857">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".htaccess" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.htaccess">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -70,7 +70,7 @@
       <file leaf-file-name="example.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phpmorphy/examples/example.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="4" selection-start="2426" selection-end="2426" vertical-scroll-proportion="-43.42857">
+            <state line="64" column="4" selection-start="2426" selection-end="2426" vertical-scroll-proportion="-7.892857">
               <folding />
             </state>
           </provider>
@@ -79,7 +79,7 @@
       <file leaf-file-name="Benchmark.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Benchmark.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="5" selection-start="1463" selection-end="1463" vertical-scroll-proportion="-35.964287">
+            <state line="53" column="5" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -88,7 +88,7 @@
       <file leaf-file-name="view.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="22" selection-start="328" selection-end="328" vertical-scroll-proportion="-7.464286">
+            <state line="13" column="88" selection-start="731" selection-end="731" vertical-scroll-proportion="-8.821428">
               <folding />
             </state>
           </provider>
@@ -106,12 +106,14 @@
       <list>
         <option value="$PROJECT_DIR$/UTF8.php" />
         <option value="$PROJECT_DIR$/Benchmark.php" />
-        <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/view.php" />
         <option value="$PROJECT_DIR$/js/script.js" />
-        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="$PROJECT_DIR$/view.php" />
         <option value="$PROJECT_DIR$/funcs.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -176,7 +178,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tmp" />
+              <option name="myItemId" value="phpmorphy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -190,21 +192,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dic" />
+              <option name="myItemId" value="phpmorphy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -215,6 +207,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -239,7 +232,10 @@
       <recent name="$PROJECT_DIR$/img" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.funcs.php">
+    <configuration default="false" name="funcs.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/funcs.php">
+      <method />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
@@ -250,7 +246,14 @@
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
-    <list size="0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHP Script.funcs.php" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.funcs.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -268,8 +271,8 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25303516" sideWeight="0.5061179" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25303516" sideWeight="0.48609567" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26453674" sideWeight="0.5194661" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26453674" sideWeight="0.4727475" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -337,65 +340,34 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Benchmark.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="1" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UTF8.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3983" column="61" selection-start="134748" selection-end="134748" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="44" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpmorphy/src/source.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.2297497">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="202" column="26" selection-start="5607" selection-end="5607" vertical-scroll-proportion="-8.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Benchmark.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="5" selection-start="1463" selection-end="1463" vertical-scroll-proportion="-35.964287">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UTF8.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3374" column="64" selection-start="111263" selection-end="111263" vertical-scroll-proportion="-12.0">
-          <folding />
-        </state>
+        <state line="3374" column="64" selection-start="111263" selection-end="111263" vertical-scroll-proportion="-12.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/phpmorphy/src/common.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="24" selection-start="8211" selection-end="8213" vertical-scroll-proportion="2.885886">
+        <state line="285" column="24" selection-start="8211" selection-end="8213" vertical-scroll-proportion="2.885886" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpmorphy/src/morphiers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="867" column="4" selection-start="26326" selection-end="26488" vertical-scroll-proportion="0.7117117" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="37" selection-start="115" selection-end="115" vertical-scroll-proportion="0.04367816" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stop_words_ru.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpmorphy/examples/example.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="4" selection-start="2426" selection-end="2426" vertical-scroll-proportion="-7.892857">
           <folding />
         </state>
       </provider>
@@ -407,47 +379,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="5" selection-start="12" selection-end="12" vertical-scroll-proportion="0.02183908">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpmorphy/dicts/options.ru_ru.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpmorphy/dicts/morph_data_header_cache.ru_ru.bin">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpmorphy/src/shm_utils.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="655" column="46" selection-start="18842" selection-end="18852" vertical-scroll-proportion="-32.32143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="328" selection-end="328" vertical-scroll-proportion="-7.464286">
+        <state line="13" column="88" selection-start="731" selection-end="731" vertical-scroll-proportion="-8.821428">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/script.js">
+    <entry file="file://$PROJECT_DIR$/funcs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="37" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpmorphy/src/morphiers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="867" column="4" selection-start="26326" selection-end="26488" vertical-scroll-proportion="0.7117117">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpmorphy/examples/example.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="4" selection-start="2426" selection-end="2426" vertical-scroll-proportion="-43.42857">
+        <state line="20" column="25" selection-start="506" selection-end="506" vertical-scroll-proportion="-7.892857">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="4" selection-start="2396" selection-end="2396" vertical-scroll-proportion="-54.964287">
+        <state line="34" column="25" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.36104512">
           <folding>
-            <marker date="1365524150314" expanded="true" signature="2391:2456" placeholder="..." />
+            <marker date="1365532261206" expanded="true" signature="2447:2452" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funcs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="17" selection-start="2161" selection-end="2161" vertical-scroll-proportion="1.7189385">
-          <folding />
         </state>
       </provider>
     </entry>

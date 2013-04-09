@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <title>РђРЅР°Р»РёР·Р°С‚РѕСЂ С‚РµРєСЃС‚Р°</title>
+    <meta charset="windows-1251">
+    <title>Анализатор текста</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -10,51 +10,51 @@
 <div class="container">
     <div class="hero-unit<?php if ($text) echo " fold"; ?>">
         <form id="form" action="" method="POST" enctype="multipart/form-data">
-            <p><label for="text">Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚ (РґРѕ 200000 СЃРёРјРІРѕР»РѕРІ) <textarea name="text" id="text" class="input-block-level" cols="150" rows="15" autofocus="autofocus"><?php if (!empty($_POST['text'])) echo $_POST['text']; ?></textarea></label></p>
-            <p><label for="file">РР»Рё Р·Р°РіСЂСѓР·РёС‚Рµ С„Р°Р№Р» СЃ С‚РµРєСЃС‚РѕРј (РґРѕ 8РњР±) <input type="file" name="file" id="file" /></label></p>
+            <p><label for="text">Вставьте текст (до 200000 символов) <textarea name="text" id="text" class="input-block-level" cols="150" rows="15" autofocus="autofocus"><?php if (!empty($_POST['text'])) echo $_POST['text']; ?></textarea></label></p>
+            <p><label for="file">Или загрузите файл с текстом (до <?php echo $fmsize; ?>Мб) <input type="file" name="file" id="file" /></label></p>
             <p>
-                <label class="checkbox" for="freq"><input type="checkbox" id="freq" name="freq" value="1" checked="checked"> РЎРѕР·РґР°С‚СЊ С‡Р°СЃС‚РѕС‚РЅС‹Р№ СЃР»РѕРІР°СЂСЊ</label>
-                <label class="checkbox" for="stop"><input type="checkbox" id="stop" name="stop" value="1"> РЎРѕР·РґР°С‚СЊ С‡Р°СЃС‚РѕС‚РЅС‹Р№ СЃР»РѕРІР°СЂСЊ Р±РµР· <a href="/stop_words_ru.txt" title="РЎРєР°С‡Р°С‚СЊ СЃРїРёСЃРѕРє СЃС‚РѕРї-СЃР»РѕРІ">СЃС‚РѕРї-СЃР»РѕРІ</a></label>
-                <label class="checkbox" for="morph"><input type="checkbox" id="morph" name="morph" value="1"> РЎРѕР·РґР°С‚СЊ С‡Р°СЃС‚РѕС‚РЅС‹Р№ СЃР»РѕРІР°СЂСЊ СЃ РѕР±СЂР°Р±РѕС‚РєРѕР№ РјРѕСЂС„РѕР»РѕРіРёС‡РµСЃРєРёРј Р°РЅР°Р»РёР·Р°С‚РѕСЂРѕРј</label>
+                <label class="checkbox" for="freq"><input type="checkbox" id="freq" name="freq" value="1" checked="checked"> Создать частотный словарь</label>
+                <label class="checkbox" for="stop"><input type="checkbox" id="stop" name="stop" value="1"> Создать частотный словарь без <a href="/stop_words_ru.txt" title="Скачать список стоп-слов">стоп-слов</a></label>
+                <label class="checkbox" for="morph"><input type="checkbox" id="morph" name="morph" value="1"> Создать частотный словарь с обработкой морфологическим анализатором</label>
             </p>
-            <p><button type="submit" class="btn btn-primary btn-large"><i class="icon-cog icon-white"></i> РђРЅР°Р»РёР·РёСЂРѕРІР°С‚СЊ</button></p>
+            <p><button type="submit" class="btn btn-primary btn-large"><i class="icon-cog icon-white"></i> Анализировать</button></p>
         </form>
-        <div class="more"><button class="btn btn-info btn-small">Р”СЂСѓРіРѕР№ С‚РµРєСЃС‚</button></div>
+        <div class="more"><button class="btn btn-info btn-small">Другой текст</button></div>
     </div>
     <?php if ($text) { ?>
     <div class="results tabbable tabs-left">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#stat" data-toggle="tab">РЎС‚Р°С‚РёСЃС‚РёРєР°</a></li>
-            <li><a href="#words" data-toggle="tab">РЎР»РѕРІР°</a></li>
-            <li><a href="#stop-words" data-toggle="tab">РЎС‚РѕРї-СЃР»РѕРІР°</a></li>
-            <li><a href="#files" data-toggle="tab">Р¤Р°Р№Р»С‹</a></li>
-            <li><a href="#bench" data-toggle="tab">Р РµСЃСѓСЂСЃС‹</a></li>
+            <li class="active"><a href="#stat" data-toggle="tab">Статистика</a></li>
+            <li><a href="#words" data-toggle="tab">Слова</a></li>
+            <li><a href="#stop-words" data-toggle="tab">Стоп-слова</a></li>
+            <li><a href="#files" data-toggle="tab">Файлы</a></li>
+            <li><a href="#bench" data-toggle="tab">Ресурсы</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="stat">
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
-                        <td>РЎРёРјРІРѕР»РѕРІ</td>
+                        <td>Символов</td>
                         <td><?php echo $number_of_symbols; ?></td>
                     </tr>
                     <tr>
-                        <td>РЎРёРјРІРѕР»РѕРІ Р±РµР· РїСЂРѕР±РµР»РѕРІ</td>
+                        <td>Символов без пробелов</td>
                         <td><?php echo $number_of_symbols - $spaces; ?></td>
                     </tr>
                     <tr>
-                        <td>РЎР»РѕРІ</td>
+                        <td>Слов</td>
                         <td><?php echo sizeof($words); ?></td>
                     </tr>
                     <tr>
-                        <td>РЎС‚РѕРї-СЃР»РѕРІ</td>
+                        <td>Стоп-слов</td>
                         <td><?php echo sizeof($stop_words_actual); ?></td>
                     </tr>
                     <tr>
-                        <td>РЈРЅРёРєР°Р»СЊРЅС‹С… СЃР»РѕРІ</td>
+                        <td>Уникальных слов</td>
                         <td><?php echo sizeof($dict); ?></td>
                     </tr>
                     <tr>
-                        <td>РЈРЅРёРєР°Р»СЊРЅС‹С… СЃР»РѕРІ (Р±РµР· СЃС‚РѕРї-СЃР»РѕРІ)</td>
+                        <td>Уникальных слов (без стоп-слов)</td>
                         <td><?php echo sizeof($dict_stop); ?></td>
                     </tr>
                 </table>
@@ -62,9 +62,9 @@
             <div class="tab-pane" id="words">
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
-                        <th>РЎР»РѕРІРѕ</th>
-                        <th>РљРѕР»-РІРѕ</th>
-                        <th>Р§Р°СЃС‚РѕС‚Р°, %</th>
+                        <th>Слово</th>
+                        <th>Кол-во</th>
+                        <th>Частота, %</th>
                     </tr>
                 <?php foreach ($dict_stop as $w => $ws) { ?>
                 <tr>
@@ -78,9 +78,9 @@
             <div class="tab-pane" id="stop-words">
                 <table class="table table-bordered table-hover table-condensed">
                 <tr>
-                    <th>РЎС‚РѕРї-СЃР»РѕРІРѕ</th>
-                    <th>РљРѕР»-РІРѕ</th>
-                    <th>Р§Р°СЃС‚РѕС‚Р°, %</th>
+                    <th>Стоп-слово</th>
+                    <th>Кол-во</th>
+                    <th>Частота, %</th>
                 </tr>
                 <?php foreach ($stop_words_array as $a => $av) { ?>
                 <tr>
@@ -97,7 +97,7 @@
                     if ($files) {
                         foreach ($files as $f => $fv) { ?>
                             <div class="well well-large span3">
-                                <a href="<?php echo $fv['file']; ?>"><i class="icon-book"></i> <?php echo $f .' ('. $fv['size'] . ' РљР±)' ?></a>
+                                <a href="<?php echo $fv['file']; ?>"><i class="icon-book"></i> <?php echo $f .' ('. $fv['size'] . ' Кб)' ?></a>
                             </div>
                             <?php }
                     }
@@ -107,15 +107,15 @@
             <div class="tab-pane" id="bench">
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
-                        <th>Р—Р°РґР°С‡Р°</th>
-                        <th>Р’СЂРµРјСЏ</th>
-                        <th>РџР°РјСЏС‚СЊ</th>
+                        <th>Задача</th>
+                        <th>Время</th>
+                        <th>Память</th>
                     </tr>
                     <?php foreach ($stats as $s => $sv) { ?>
                     <tr>
                         <td><?php echo $s; ?></td>
-                        <td><?php echo $sv['time'] . ' СЃ'; ?></td>
-                        <td><?php echo $sv['mem'] . ' Р±'; ?></td>
+                        <td><?php echo $sv['time'] . ' с'; ?></td>
+                        <td><?php echo $sv['mem'] . ' б'; ?></td>
                     </tr>
                     <?php } ?>
                 </table>
