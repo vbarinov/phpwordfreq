@@ -3,87 +3,75 @@ function normalize($val)
 {
     if (!$val) return false;
 
-    $val = preg_replace('~(\s)+(\-)+(\s)+~', "$1$3", $val); // убираем одинокие дефисы
-    // оставл€ем буквы, цифры, пробелы и дефисы
+    $val = preg_replace('~([\s\d]+\-(\s)*)~', " ", $val); // убираем одинокие дефисы
+    // оставл€ем буквы, пробелы и дефисы
     // переводим в верхний регистр
-    $val = preg_replace('~[^\w\s\d\-]~', '', strtoupper($val));
+    $val = preg_replace('~[^а-€\s\-]~i', '', strtoupper($val));
 
     return $val;
 }
 
 function unique($words, $morph = FALSE)
 {
-    $total = sizeof($words);
+    $total = sizeof($words); // количество слов
     $counter = 0;
-    $result = $marr = array();
+    $result = $unique = $dict_dynamics = $zipf = array();
+    if ($morph) $morphy = morphy_instance();
 
-    $unique = array_count_values($words);
-    foreach ($words as $w)
-    arsort($unique, SORT_NUMERIC);
+    //$counted_words = arsort(array_count_values($words));
 
-    if ($morph)
-    {
-        $morphy = morphy_instance();
-        //$morphy->getShmCache()->free();
-        $unique_values = array_keys($unique);
-
-
-        // пословна€ обработка
-        foreach ($unique_values as $u)
+    // формирование словар€
+    foreach ($words as $n => $w) {
+        if (!array_key_exists($w, $unique))
         {
-
-            $paradigms = $morphy->findWord($u);
-            if ($paradigms !== FALSE)
-            {
-                $m = array();
-                foreach ($paradigms as $paradigm)
-                {
-                    foreach ($paradigm->getFoundWordForm() as $form)
-                    {
-                        $m[] = $form->getWord() .'='. $form->getPartOfSpeech() . ',' . implode(',', $form->getGrammems());
-                    }
-
-                }
-                $marr[] = '{' . implode('|', $m) . '}';
-            }
-            else
-            {
-                $marr[] = '';
-            }
-
-            unset($paradigms);
+            // добавл€ем слово в словарь
+            $unique[$w] = 1;
+            $counter++;
+        }
+        else
+        {
+            // или увеличиваем число вхождений
+            $unique[$w]++;
         }
 
-        /*
-        // bulk-обработка
-        $morph_words = $morphy->findWord($unique_values);
-
-        foreach ($morph_words as $key => $word) {
-            if ($word) {
-                $m = array();
-                foreach ($word as $paradigms) {
-                    foreach ($paradigms->getFoundWordForm() as $paradigm) {
-                        $m[] = $paradigm->getWord() .'='. $paradigm->getPartOfSpeech() . ',' . implode(',', $paradigm->getGrammems());
-                    }
-                }
-            }
-            $marr[] = $word ? '{' . implode('|', $m) . '}' : '';
-        }
-        */
-
+        $dict_dynamics[$n + 1] = $counter; // размер словар€
     }
-
+    arsort($unique, SORT_NUMERIC);
 
     foreach ($unique as $word => $count)
     {
+        $freq = $count / $total * 100;
         $result[$word] = array(
             $count,
-            round($count / $total * 100, 4) . '%',
-         );
-        if ($morph) $result[$word][] = $marr[$counter];
-        $counter++;
+            round($freq, 4) . '%',
+        );
+        if ($morph) $result[$word][] = analyze($word, $morphy);
+        $zipf[] = $freq;
     }
 
+    return array($result, $dict_dynamics, $zipf);
+}
+
+function analyze($word, &$morphy)
+{
+    $result = '';
+
+    $paradigms = $morphy->findWord($word);
+    if ($paradigms !== FALSE)
+    {
+        $m = array();
+        foreach ($paradigms as $paradigm)
+        {
+            foreach ($paradigm->getFoundWordForm() as $form)
+            {
+                $m[] = $form->getWord() .'='. $form->getPartOfSpeech() . ',' . implode(',', $form->getGrammems());
+            }
+
+        }
+        $result = '{' . implode('|', $m) . '}';
+    }
+
+    //unset($paradigms);
     return $result;
 }
 
@@ -121,9 +109,9 @@ function morphy_instance()
     // —оздание экземпл€ра морфи
     $dic_path = DICROOT . 'phpmorphy/dicts';
     $lang = 'ru_RU';
-    define('PHPMORPHY_SHM_SEGMENT_SIZE', 256 * 1024 * 1024);
+    //define('PHPMORPHY_SHM_SEGMENT_SIZE', 64 * 1024 * 1024);
     $morphy_opts = array(
-        'storage' => PHPMORPHY_STORAGE_MEM,
+        'storage' => PHPMORPHY_STORAGE_SHM,
     );
 
     try {
