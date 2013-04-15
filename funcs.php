@@ -1,4 +1,8 @@
-<?php
+<?php defined('DICROOT') or die('Доступ запрещён');
+/*
+ * Функции
+ */
+
 function normalize($val)
 {
     if (!$val) return false;
@@ -21,7 +25,8 @@ function unique($words, $morph = FALSE)
     //$counted_words = arsort(array_count_values($words));
 
     // формирование словаря
-    foreach ($words as $n => $w) {
+    foreach ($words as $n => $w)
+    {
         if (!array_key_exists($w, $unique))
         {
             // добавляем слово в словарь
@@ -81,11 +86,63 @@ function remove_stop($words, $stop_words)
     return  array_diff($words, $stop_words);
 }
 
+function mystem($data, $dir = 'tmp')
+{
+    if (!$data) return false;
+
+    // Запись временного файла (без стоп слов)
+    $filename = substr(sha1(microtime()), 0, 20).'.txt';
+    $path = DICROOT . $dir;
+    if (is_dir($path) AND is_writable($path))
+    {
+        $path .= DIRECTORY_SEPARATOR . $filename;
+        if (!$handle = fopen($path, 'c+b')) die('Невозможно создать файл '.$filename);
+        if (is_array($data))
+        {
+            foreach ($data as $k => $v)
+            {
+                $line = $v . PHP_EOL;
+                fwrite($handle, $line);
+            }
+        }
+        else
+        {
+            fwrite($handle, $data);
+        }
+
+        fclose($handle);
+    }
+    else
+        die('Не удаётся открыть директорию '. $dir .' на запись');
+
+    // Анализ
+    if (file_exists($path) AND is_readable($path))
+    {
+        $output_file = 'morph_'.substr(sha1(microtime()), 0, 10).'.txt';
+        $output_path = DICROOT . $dir . DIRECTORY_SEPARATOR . $output_file;
+        if (!$handle = fopen($output_path, 'c+b')) die('Невозможно создать файл '.$output_file);
+        exec(DICROOT.'mystem -nfi '.$path.' '.$output_path);
+        fclose($handle);
+    }
+
+    if (file_exists($output_path))
+    {
+        return array(
+            'file' => '/' . $dir . '/' . $output_file,
+            'size' => round(filesize($output_path) / 1024, 2)
+        );
+    }
+
+    return false;
+
+}
+
 function create_dic($data, $filename, $dir = 'tmp')
 {
     $filename = $filename .'_'.substr(sha1(microtime()), 0, 10).'.txt';
     $path = DICROOT . $dir;
-    if (is_dir($path) AND is_writable($path)) {
+    if (is_dir($path) AND is_writable($path))
+    {
         $path .= DIRECTORY_SEPARATOR . $filename;
         if (!$handle = fopen($path, 'c+b')) die('Невозможно создать файл '.$filename);
         foreach ($data as $k => $v)
@@ -101,7 +158,8 @@ function create_dic($data, $filename, $dir = 'tmp')
             'size' => round(filesize($path) / 1024, 2)
         );
     }
-    else die('Не удаётся открыть директорию tmp на запись');
+    else
+        die('Не удаётся открыть директорию '. $dir .' на запись');
 }
 
 function morphy_instance()
@@ -123,7 +181,8 @@ function morphy_instance()
 
 function upload_error($code)
 {
-    switch($code) {
+    switch($code)
+    {
         case UPLOAD_ERR_INI_SIZE:
             $message = "Превышен максимальный размер файла";
             break;

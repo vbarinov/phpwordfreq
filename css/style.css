@@ -1,7 +1,45 @@
-.container { margin-top: 20px; }
-.more { display: none; }
-.fold { height: 32px; text-align: center; padding: 10px; }
-.fold .more { display: block; }
-.fold form { display: none; }
-#dict-dynamics { height: 400px; }
-#dict-zipf { height: 400px; margin: 40px 0; }
+.container {
+    margin-top: 20px;
+}
+
+.more {
+    display: none;
+}
+
+.fold {
+    height: 32px; text-align: center; padding: 10px;
+}
+
+.fold .more {
+    display: block;
+}
+
+.fold form {
+    display: none;
+}
+
+#dict-dynamics {
+    height: 400px;
+}
+
+#dynamics-holder {
+    margin-bottom: 20px;
+}
+
+#dict-zipf {
+    height: 400px;
+}
+
+#form {
+    margin: 0;
+}
+
+.typeofmorph {
+    height: 40px;
+    margin: 0 0 0 20px;
+    display: none;
+}
+
+.graph-toggle:nth-child(2n) {
+    margin-top: 25px;
+}

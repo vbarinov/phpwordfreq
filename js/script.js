@@ -18,6 +18,12 @@ $(document).ready(function() {
             return false;
         }
     })
+
+    $('#morph').on('click', function() {
+        guess_visible($(this), $('.typeofmorph'));
+    })
+
+    guess_visible($('#morph'), $('.typeofmorph'));
 })
 
 function clear_form_elements(ele) {
@@ -31,9 +37,15 @@ function clear_form_elements(ele) {
                 $(this).val('');
                 break;
             case 'checkbox':
-            case 'radio':
                 this.checked = false;
+                break;
+            case 'radio':
         }
     });
 
+}
+
+function guess_visible(toggle, block) {
+    if (toggle.is(':checked')) block.show();
+    else block.hide();
 }

@@ -1,4 +1,9 @@
-<?php
+<?php defined('DICROOT') or die('Доступ запрещён');
+/*
+ * Класс для измерения производительности
+ * TODO: среднее время выполнения, память потребляемая шелл-скриптами
+ */
+
 class Benchmark
 {
     public static $points = array();

@@ -1,4 +1,4 @@
-<?php
+<?php defined('DICROOT') or die('Доступ запрещён');
 /**
  * PHP5 UTF-8 is a UTF-8 aware library of functions mirroring PHP's own string functions.
  *

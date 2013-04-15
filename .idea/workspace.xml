@@ -29,18 +29,19 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/UTF8.php" />
-        <option value="$PROJECT_DIR$/Benchmark.php" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/js/jquery.flot.axislabels.js" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/stop_words_ru.txt" />
-        <option value="$PROJECT_DIR$/js/script.js" />
+        <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/UTF8.php" />
+        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/view.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/funcs.php" />
+        <option value="$PROJECT_DIR$/Benchmark.php" />
+        <option value="$PROJECT_DIR$/js/script.js" />
       </list>
     </option>
   </component>
@@ -123,7 +124,11 @@
     </servers>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/img" />
     </key>
   </component>
@@ -253,23 +258,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="5" selection-start="12" selection-end="12" vertical-scroll-proportion="0.02183908" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpmorphy/dicts/options.ru_ru.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phpmorphy/dicts/morph_data_header_cache.ru_ru.bin">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -306,27 +294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="7" selection-start="7734" selection-end="7734" vertical-scroll-proportion="5.334835">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="35" selection-start="656" selection-end="656" vertical-scroll-proportion="0.5912306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Benchmark.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="5" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.8003003">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phpmorphy/examples/example.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="4" selection-start="2426" selection-end="2426" vertical-scroll-proportion="0.08708709">
@@ -334,24 +301,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/UTF8.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.36377025">
+        <state line="0" column="51" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/funcs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="1" selection-start="4209" selection-end="4209" vertical-scroll-proportion="0.9429429">
+        <state line="7" column="28" selection-start="126" selection-end="126" vertical-scroll-proportion="0.1996997">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="118" selection-start="1620" selection-end="1620" vertical-scroll-proportion="0.5705706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Benchmark.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="41" selection-start="96" selection-end="96" vertical-scroll-proportion="0.057057057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="29" selection-start="185" selection-end="185" vertical-scroll-proportion="0.10749646">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="43" selection-start="256" selection-end="256" vertical-scroll-proportion="0.16124469">
+        <state line="28" column="12" selection-start="302" selection-end="302" vertical-scroll-proportion="0.75247526">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="18" selection-start="3313" selection-end="3313" vertical-scroll-proportion="3.3578792">
+          <folding>
+            <element signature="e#6#81#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
