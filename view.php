@@ -68,29 +68,29 @@
                         <th>Кол-во</th>
                         <th>Частота, %</th>
                     </tr>
-                <?php foreach ($dict_stop as $w => $ws) { ?>
-                <tr>
-                    <td><?php echo $w; ?></td>
-                    <td><?php echo $ws[0]; ?></td>
-                    <td><?php echo $ws[1]; ?></td>
-                </tr>
-                <?php } ?>
+                    <?php foreach ($dict_stop as $w => $ws) { ?>
+                    <tr>
+                        <td><?php echo $w; ?></td>
+                        <td><?php echo $ws[0]; ?></td>
+                        <td><?php echo $ws[1]; ?></td>
+                    </tr>
+                    <?php } ?>
                 </table>
             </div>
             <div class="tab-pane" id="stop-words">
                 <table class="table table-bordered table-hover table-condensed">
-                <tr>
-                    <th>Стоп-слово</th>
-                    <th>Кол-во</th>
-                    <th>Частота, %</th>
-                </tr>
-                <?php foreach ($stop_words_array as $a => $av) { ?>
-                <tr>
-                    <td><?php echo $a; ?></td>
-                    <td><?php echo $av[0]; ?></td>
-                    <td><?php echo $av[1]; ?></td>
-                </tr>
-                <?php } ?>
+                    <tr>
+                        <th>Стоп-слово</th>
+                        <th>Кол-во</th>
+                        <th>Частота, %</th>
+                    </tr>
+                    <?php foreach ($stop_words_array as $a => $av) { ?>
+                    <tr>
+                        <td><?php echo $a; ?></td>
+                        <td><?php echo $av[0]; ?></td>
+                        <td><?php echo $av[1]; ?></td>
+                    </tr>
+                    <?php } ?>
                 </table>
             </div>
             <div class="tab-pane" id="files">
@@ -99,7 +99,7 @@
                     if ($files) {
                         foreach ($files as $f => $fv) { ?>
                             <div class="well well-large span3">
-                                <a href="<?php echo $fv['file']; ?>"><i class="icon-book"></i> <?php echo $f .' ('. $fv['size'] . ' Кб)' ?></a>
+                                <a href="<?php echo $fv['file']; ?>" target="_blank"><i class="icon-book"></i> <?php echo $f .' ('. $fv['size'] . ' Кб)' ?></a>
                             </div>
                             <?php }
                     }
@@ -135,19 +135,19 @@
 <script type="text/javascript">
     $(function() {
         var dynamics = [
-            <?php foreach ($dict_dynamics as $l => $d)
-            {
-                echo "[{$l}, {$d}],";
-            }
-            ?>
-            ],
-            zipf = [
-            <?php foreach ($zipf as $r => $f)
-            {
-                echo "[{$r}, {$f}],";
-            }
-            ?>
-            ];
+                <?php foreach ($dict_dynamics as $l => $d)
+                {
+                    echo "[{$l}, {$d}],";
+                }
+                ?>
+                ],
+                zipf = [
+                    <?php foreach ($zipf as $r => $f)
+                    {
+                        echo "[{$r}, {$f}],";
+                    }
+                    ?>
+                ];
 
         $.plot('#dict-dynamics', [
             {
@@ -155,14 +155,14 @@
                 color: '#00adee'
             }
         ],
-        {
-            xaxis: {
-                axisLabel: "длина текста"
-            },
-            yaxis: {
-                axisLabel: "размер словаря"
-            }
-        }
+                {
+                    xaxis: {
+                        axisLabel: "длина текста"
+                    },
+                    yaxis: {
+                        axisLabel: "размер словаря"
+                    }
+                }
         );
 
         $.plot('#dict-zipf', [
@@ -183,6 +183,6 @@
     }());
 
 </script>
-<?php } ?>
+    <?php } ?>
 </body>
 </html>

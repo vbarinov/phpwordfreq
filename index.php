@@ -4,9 +4,10 @@ require_once 'funcs.php';
 require_once 'Benchmark.php';
 
 ini_set('display_errors', 'On');
+ini_set('post_max_size', '4M');
 error_reporting(E_ALL | E_STRICT);
 define('DICROOT', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-setlocale(LC_ALL, 'ru_RU.CP1251');
+if (!setlocale(LC_ALL, 'ru_RU.CP1251')) die('нет локали ru_RU.CP1251');
 $fmsize = str_replace(array('M','K','b'), '', ini_get('post_max_size'));
 
 $app = Benchmark::start('Приложение');
@@ -20,22 +21,26 @@ $files = array();
 $stop_words = explode(',', @file_get_contents(DICROOT . 'stop_words_ru.txt'));
 
 // Юзер загрузил файл
-if (isset($_FILES['file']) AND strlen($_FILES['file']['tmp_name']))
+if (isset($_FILES['file']) AND is_uploaded_file($_FILES['file']['tmp_name']))
 {
-    $text = file_get_contents($_FILES['file']['tmp_name']);
+    if ($_FILES['file']['error'] === UPLOAD_ERR_OK) {
+        $text = file_get_contents($_FILES['file']['tmp_name']);
 
-    $st = Benchmark::start('Нормализация и разбиение текста');
+        $st = Benchmark::start('Нормализация и разбиение текста');
 
-    $norm_text = normalize($text);
+        $norm_text = normalize($text);
 
-    //$split_pattern = '/\b[\(\)\.\-\',:!\?;"\{\}\[\]„“»«‘`\t\r\n\d\s]*/u';
-    $split_pattern = '/(?<!-)\b[\s]*(?!-)/';
-    $words = preg_split($split_pattern, $norm_text, NULL, PREG_SPLIT_NO_EMPTY);
+        //$split_pattern = '/\b[\(\)\.\-\',:!\?;"\{\}\[\]„“»«‘`\t\r\n\d\s]*/u';
+        $split_pattern = '/(?<!-)\b[\s]*(?!-)/';
+        $words = preg_split($split_pattern, $norm_text, NULL, PREG_SPLIT_NO_EMPTY);
 
+        Benchmark::stop($st);
+    } else {
+        echo upload_error($_FILES['file']['error']);
+    }
 
-    Benchmark::stop($st);
 }
- else if (isset($_POST) AND !empty($_POST['text'])) // Текст через инпут
+else if (isset($_POST) AND !empty($_POST['text'])) // Текст через инпут
 {
     // разбиение текста на слова
     $st = Benchmark::start('Нормализация и разбиение текста');

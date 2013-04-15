@@ -3,10 +3,10 @@ function normalize($val)
 {
     if (!$val) return false;
 
-    $val = preg_replace('~([\s\d]+\-(\s)*)~', " ", $val); // убираем одинокие дефисы
+    $val = preg_replace('/([\s\d]+\-(\s)*)/', " ", $val); // убираем одинокие дефисы
     // оставляем буквы, пробелы и дефисы
     // переводим в верхний регистр
-    $val = preg_replace('~[^а-я\s\-]~i', '', strtoupper($val));
+    $val = preg_replace('/[^а-я\s\-]/i', '', strtoupper($val));
 
     return $val;
 }
@@ -119,4 +119,35 @@ function morphy_instance()
     } catch (phpMorphy_Exception $e) {
         die('Произошла ошибка при создании морфологического анализатора ' . $e->getMessage());
     }
+}
+
+function upload_error($code)
+{
+    switch($code) {
+        case UPLOAD_ERR_INI_SIZE:
+            $message = "Превышен максимальный размер файла";
+            break;
+        case UPLOAD_ERR_FORM_SIZE:
+            $message = "Превышен указанный в форме максимальный размер файла";
+            break;
+        case UPLOAD_ERR_PARTIAL:
+            $message = "Файл загружен не полностью";
+            break;
+        case UPLOAD_ERR_NO_FILE:
+            $message = "Файл не был загружен";
+            break;
+        case UPLOAD_ERR_NO_TMP_DIR:
+            $message = "Не найдена временная директория";
+            break;
+        case UPLOAD_ERR_CANT_WRITE:
+            $message = "Не удалось записать файл на диск";
+            break;
+        case UPLOAD_ERR_EXTENSION:
+            $message = "Загрузка файла остановлена расширением";
+            break;
+        default:
+            $message = "Неизвестная ошибка загрузки";
+            break;
+    }
+    return $message;
 }

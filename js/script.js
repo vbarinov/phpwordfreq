@@ -4,6 +4,20 @@ $(document).ready(function() {
         $('.fold').removeClass('fold');
         $('.results').hide();
     })
+
+    $('#form').on('submit', function(e) {
+        var self = $(this),
+            btn = $('button[type="submit"]', self);
+
+        if (!self.hasClass('processing')) {
+            self.addClass('processing');
+            btn.addClass('disabled').html('<i class="icon-filter icon-white"></i> Обработка...');
+            return true;
+        } else {
+            e.preventDefault();
+            return false;
+        }
+    })
 })
 
 function clear_form_elements(ele) {
